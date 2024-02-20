@@ -1,10 +1,8 @@
 const express = require("express");
-const app = express();
-
 const { google } = require('googleapis');
-const readline = require('readline');
-
 const { connection } = require("./db");
+
+const app = express();
 app.use(express.json());
 
 // Scopes for accessing Gmail API
@@ -22,42 +20,8 @@ const authUrl = oAuth2Client.generateAuthUrl({
   scope: SCOPES,
 });
 
-
 // console.log("authUrl",authUrl)
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-
-// get oAuth2 code from user input
-rl.question('Enter the code : ', (code) => {
-  rl.close();
-  
-  // get access token
-  oAuth2Client.getToken(code, (err, token) => {
-    if (err) return console.error('Error retrieving access token', err);
-
-    // set credentials for further API requests
-    oAuth2Client.setCredentials(token);
-
-    // use the gmail API
-    const gmail = google.gmail({ version: 'v1', auth: oAuth2Client });
-
-    gmail.users.labels.list({ userId: 'me' }, (err, res) => {
-      if (err) return console.error('The API returned an error:', err);
-      const labels = res.data.labels;
-      if (labels.length) {
-        console.log('Labels:');
-        labels.forEach((label) => {
-          console.log(`- ${label.name}`);
-        });
-      } else {
-        console.log('No labels found.');
-      }
-    });
-  });
-});
 
 // Function to process incoming emails and send automated replies
 const main = async ()=> {
@@ -122,7 +86,7 @@ const  generateReply =  (category) => {
 // Function to send automated reply using Gmail API
 const sendReply = async (to, reply)=> {
 
-  const gmail = google.gmail({ version: 'v1', auth: gmailOAuth2Client });
+  const gmail = google.gmail({ version: 'v1', auth: gmail.oAuth2Client });
   const message = `From: reachinbox@gmail.com>\nTo: ${to}\nSubject: Automated Reply\n\n${reply}`;
   
   await gmail.users.messages.send({
