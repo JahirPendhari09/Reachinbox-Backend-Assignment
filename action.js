@@ -2,19 +2,19 @@ const { google } = require('googleapis');
 // Scopes for accessing Gmail API
 const SCOPES = ['https://mail.google.com/'];
 
-const oAuth2Client = new google.auth.OAuth2(
+  const oAuth2Client = new google.auth.OAuth2(
     `${process.env.CLIENT_ID}`,
     `${process.env.CLIENT_SECRET}`,
     `${process.env.REDIRECT_URI}`
   );
   
   // generate google OAuth URL
-  const authUrl = oAuth2Client.generateAuthUrl({
-    access_type: 'offline',
-    scope: SCOPES,
-  });
+  // const authUrl = oAuth2Client.generateAuthUrl({
+  //   access_type: 'offline',
+  //   scope: SCOPES,
+  // });
   
-  console.log("authUrl",authUrl)
+  // console.log("authUrl",authUrl)
   
   // Function to retrieve incoming emails using Gmail API
   const getIncomingEmails = async ()=> {

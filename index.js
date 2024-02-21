@@ -23,8 +23,26 @@ const getEmailAndSendAutoReplay = async ()=> {
   }
 }
 
-// call the main logic
-getEmailAndSendAutoReplay ();
+// get route for welcome note
+app.get("/",async(req,res)=>{
+    try{
+        res.status(200).send("Welcome to Razorsharp E-mail Outreach tool powered by AI")
+    }catch(err){
+        res.status(500).send({"error":err})
+    }
+})
+
+// post route for processing emails
+app.post("/process-emails", async (req, res) => {
+    try {
+        // Call the main logic to process emails
+        await getEmailAndSendAutoReplay();
+        res.status(200).send("Email processing initiated");
+    } catch (err) {
+        console.error('Error processing emails', err);
+        res.status(500).send("Error processing emails");
+    }
+});
 
 app.listen(process.env.PORT, async()=>{
     try{
