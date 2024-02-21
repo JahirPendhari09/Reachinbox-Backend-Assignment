@@ -14,8 +14,6 @@ Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine. It allow
 
 Express is a web application framework for Node.js. It simplifies the process of building web applications and APIs by providing a robust set of features.
 
-### 3. 
-
 ## Deployment
 
 The application is deployed on render and can be accessed [here](https://reachinbox-assignment.onrender.com/).
@@ -33,10 +31,11 @@ The application is deployed on render and can be accessed [here](https://reachin
    <h2>Endpoints</h2>
    
    <h3>GET Welcome note</h3>
-   <pre><code> GET http://localhost:8080/ </pre>
+   <pre><code> GET https://localhost:8080/ </code></pre>
 
    <h3>POST Process Emails</h3>
-   <pre><code>POST http://localhost:8080/process-emails/ </code></pre>
+   <pre><code>POST https://localhost:8080/process-emails/ </code></pre>
+
 
 
    # Credits <br/>
