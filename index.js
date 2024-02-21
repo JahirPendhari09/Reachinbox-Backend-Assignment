@@ -20,30 +20,7 @@ const authUrl = oAuth2Client.generateAuthUrl({
   scope: SCOPES,
 });
 
-// console.log("authUrl",authUrl)
-
-
-// Function to process incoming emails and send automated replies
-const main = async ()=> {
-    try {
-        // Retrieve incoming emails using Gmail API
-        const emails = await getIncomingEmails();
-
-        // Iterate through incoming emails
-        for (const email of emails){
-          // Extract email content
-          const emailContent = categorizeEmail(email);
-
-          // Generate automated 
-          const reply =  generateReply(emailContent);
-
-          // Send automated reply using Gmail API
-          await sendReply(email.sender, reply);
-        }
-    } catch (err) {
-        console.error('Error', err);
-    }
-}
+console.log("authUrl",authUrl)
 
 // Function to retrieve incoming emails using Gmail API
 const getIncomingEmails = async ()=> {
@@ -97,6 +74,26 @@ const sendReply = async (to, reply)=> {
   });
 }
 
+// Function to process incoming emails and send automated replies
+const main = async ()=> {
+  try {
+      // Retrieve incoming emails using Gmail API
+      const emails = await getIncomingEmails();
+      // console.log(emails,"emails")
+
+      // Iterate through incoming emails
+      for (const email of emails){
+        // Extract email content
+        const emailContent = categorizeEmail(email);
+        // Generate automated 
+        const reply =  generateReply(emailContent);
+        // Send automated reply using Gmail API
+        await sendReply(email.sender, reply);
+      }
+  } catch (err) {
+      console.error('Error', err);
+  }
+}
 // Call the main 
 main();
 
