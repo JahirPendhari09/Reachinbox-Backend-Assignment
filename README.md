@@ -2,7 +2,7 @@
 
 ## Overview
 
-This Node.js application serves as an automated email outreach tool powered by AI. It fetches incoming emails, categorizes them, generates automated replies based on the content, and sends them using the Gmail API.
+This Node.js application serves as an automated email outreach tool. It fetches incoming emails, categorizes them, generates automated replies based on the content, and sends them using the Gmail API.
 
 ## Technologies Used
 
