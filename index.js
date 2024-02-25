@@ -50,7 +50,7 @@ app.get("/auth/google/failure",(req,res)=>{
 
 app.get("/auth/google/success", isLoggedIn, (req,res)=>{
     console.log(req.user)
-    let name = req.user.displayName;
+    // let name = req.user.displayName;
     res.status(201).send(`Hello ${req.user.name.givenName}`)
 })
 
