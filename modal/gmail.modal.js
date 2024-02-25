@@ -1,11 +1,17 @@
 const mongoose = require("mongoose");
 
-const gmailSchema = mongoose.Schema({
-    form:String,
-    subject:String,
-    body:String
-})
+const userEmailSchema = mongoose.Schema({
+    email:{type:String,required:true},
+    name:String,
+    createAt:Number,
+    picture:String,
+    expireAt:Number
+},{
+    versionKey:false
+});
 
-const GmailModal = mongoose.model("gmail",gmailSchema);
+const UserEmailModel = mongoose.model("emailauth",userEmailSchema);
 
-module.exports ={GmailModal}
+module.exports = {
+    UserEmailModel
+}
