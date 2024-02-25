@@ -18,6 +18,9 @@ Express is a web application framework for Node.js. It simplifies the process of
 
 The application is deployed on render and can be accessed [here](https://reachinbox-assignment.onrender.com/).
 
+### Home Page
+
+![Home Page](https://github.com/JahirPendhari09/reachinbox-Assignment/assets/128920395/43d0cc00-3eb4-4c61-b4eb-41339d86b2e3)
 
  # How to Run <br/>
    <h2>Installation</h2>
