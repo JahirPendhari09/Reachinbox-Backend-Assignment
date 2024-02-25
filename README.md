@@ -33,11 +33,6 @@ The application is deployed on render and can be accessed [here](https://reachin
    <h3>GET Welcome note</h3>
    <pre><code> GET https://localhost:8080/ </code></pre>
 
-   <h3>POST Process Emails</h3>
-   <pre><code>POST https://localhost:8080/process-emails/ </code></pre>
-
-
-
    # Credits <br/>
    This project was developed by ```Jahir Pendhari``` as a part of ```Masai School``` training program.
 
