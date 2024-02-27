@@ -1,0 +1,81 @@
+.App {
+  text-align: center;
+  background-color: black;
+  color: white;
+  font-family: "Open Sans", "Open Sans Placeholder", sans-serif;
+}
+
+.home {
+  background-color: black;
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  position: relative;
+  margin: auto;
+}
+.home > h1 {
+  font-size: 50px;
+}
+.home > h1:first-child{
+  margin-top: 100px;
+}
+.home > h1:nth-child(2){
+  margin-top: -20px;
+}
+.home > p {
+  color: rgb(144, 146, 150);
+  font-size: 18px;
+}
+.home > p:nth-child(4){
+  margin-top: -10px;
+}
+.btn1 {
+  background: linear-gradient(rgb(62, 86, 207) 0%, rgb(80, 6, 191) 100%);
+  opacity: 1;
+  color: white;
+  height: 60px;
+  padding: 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.btns {
+  width: 40%;
+  display: flex;
+  margin: auto;
+  margin-top: 30px;
+  justify-content: center;
+  gap: 20px;
+}
+.btns > button {
+  padding: 10px;
+  width: 40%;
+  border-radius: 20px;
+  background-color: #222928;
+  color: white;
+  border: 1px solid white;
+}
+
+.chat {
+  position:fixed;
+  right: 20px;
+  bottom: 10px;
+}
+.chat > img {
+  border-radius: 50px;
+}
+.chat > img:hover {
+  transform: scale(1.1); 
+  transition: transform 0.1s ease-in-out; 
+  cursor: pointer;
+}
+
+
+@media (min-width:1500px) {
+  .home {
+    width: 1000px;
+  }
+}
