@@ -2,15 +2,18 @@ const express = require("express");
 const { connection } = require("./db");
 
 // for sending emails
-const nodemailer = require('nodemailer'); 
+// const nodemailer = require('nodemailer'); 
 
 require("./auth")
 const app = express();
 app.use(express.json());
 const passport = require("passport")
 var session = require('express-session');
+const { main , sendMailResponese } = require("./emailSend");
+const { UserEmailModel } = require("./modal/gmail.modal");
+const jwt = require("jsonwebtoken")
 
-const { sendMail } = require("./emailSend");
+// const { sendMails } = require("./emailSend");
 require("dotenv").config();
 
 app.use(session({
@@ -29,7 +32,8 @@ function isLoggedIn (req,res,next){
 
 app.get('/auth/google',
   passport.authenticate('google', { scope:
-      [ 'email','profile' ] } // we wil getting only email,proile information only form google not every information
+      [ 'email','profile'] 
+    } // we wil getting only email,proile information only form google not every information
 ));
 
 // here we are checking authenticated or not
@@ -40,64 +44,49 @@ app.get( '/auth/google/callback',
     }),
 );
 
-    // function (req, res) {
-    // // Successful authentication, redirect home.
-    // let user = req.user;
-    // // console.log(user)
-   
-    // res.redirect(`http://localhost:3000`);
-//   }
-//  );
-
-
 app.get("/auth/google/failure",(req,res)=>{
     res.send("Something went wrong!")
 })
 
+app.get("/auth/google/success", isLoggedIn, (req, res) => {
+    
+    const html = `
+        <h4>Thank you so much for connecting us</h4>
+        <h4>Reachinbox is Razorsharp E-mail Outreach tool powered by AI</h4>
+        <p>Are you interested in our service</p>
+        <a href="http://localhost:3000/Interest">click</a>
+        
+    `;
 
-
-// create mailTransporter using createTransport methode and pass gmail id and app password for authentication
-
-const mailTransporter =
-	nodemailer.createTransport(
-		{
-			service: 'gmail',
-            host:'smtp.gmail.com',
-            port:587,
-            secure:false,
-			auth: {
-				user: process.env.GMAIL_USER,
-				pass: process.env.GMAIL_APP_PASSWORD
-			}
-		}
-	);
-
-
-app.get("/auth/google/success", isLoggedIn, (req,res)=>{
-    console.log(req.user)
-    // let name = req.user.displayName;
-
-    // creating the receivers details and passing the mail details
-    const mailDetails = {
-        from:{
-            name:"reachinbox-assignment",
-            address:process.env.GMAIL_USER
-        },
-        to:'jahirpp123@gmail.com',
-        subject: 'Thank you so much for interest in Reachinbox',
-        text: 'This Reachinbox Autometed mail',
-        // html:"<b>This Reachinbox Autometed mail</b>"
+    const details = {
+        from: process.env.GMAIL_USER,
+        to: req.user.email,
+        subject: 'Reachinbox',
+        text: 'Thank you so much for interest in Reachinbox',
+        html: html
     };
-    sendMail(mailTransporter,mailDetails)
 
-    res.send(`Hello ${req.user.name.givenName}`)
-})
+    main(details);
+
+    let user = req.user;
+    let token = jwt.sign({ email: user.email, name: user.given_name }, 'secrete');
+    res.redirect(`${process.env.CALL_FRONTEND_URL}?token=${token}`);
+});
 
 
 // get route for welcome note
 app.get("/",async(req,res)=>{
     try{
         res.status(200).send("Welcome to Razorsharp E-mail Outreach tool powered by AI")
+    }catch(err){
+        res.status(500).send({"error":err})
+    }
+})
+
+app.post("/user/show-interest",async(req,res)=>{
+    console.log(req.body,"body")
+    try{
+        res.status(201).send("Thank you so much for interest")
     }catch(err){
         res.status(500).send({"error":err})
     }
