@@ -21,8 +21,14 @@ The application is deployed on render and can be accessed [here](https://reachin
 ### Home Page
 
 ![Home Page](https://github.com/JahirPendhari09/reachinbox-Assignment/assets/128920395/43d0cc00-3eb4-4c61-b4eb-41339d86b2e3)
+ 
+## Interest Section
+
+ ![Interest Section](https://github.com/JahirPendhari09/reachinbox-Assignment/assets/128920395/7142b552-93c7-45e7-a9d0-61671adab05e)
+
 
  # How to Run <br/>
+ 
    <h2>Installation</h2>
    
    Clone the repository:   ``` git clone https://github.com/JahirPendhari09/reachinbox-Assignment.git ``` <br/>
