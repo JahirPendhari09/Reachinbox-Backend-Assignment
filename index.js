@@ -10,12 +10,12 @@ app.use(express.json());
 const passport = require("passport")
 var session = require('express-session');
 const { main , sendMailResponese } = require("./emailSend");
-const { UserEmailModel } = require("./modal/gmail.modal");
 const jwt = require("jsonwebtoken")
+const cors = require('cors')
 
 // const { sendMails } = require("./emailSend");
 require("dotenv").config();
-
+app.use(cors())
 app.use(session({
     secret: 'mysecret',
     resave: false,
@@ -54,8 +54,7 @@ app.get("/auth/google/success", isLoggedIn, (req, res) => {
         <h4>Thank you so much for connecting us</h4>
         <h4>Reachinbox is Razorsharp E-mail Outreach tool powered by AI</h4>
         <p>Are you interested in our service</p>
-        <a href="http://localhost:3000/Interest">click</a>
-        
+        <a href="http://localhost:3000/Interest">click</a> 
     `;
 
     const details = {
@@ -86,6 +85,7 @@ app.get("/",async(req,res)=>{
 app.post("/user/show-interest",async(req,res)=>{
     console.log(req.body,"body")
     try{
+        sendMailResponese(req.body.email,req.body.interest)
         res.status(201).send("Thank you so much for interest")
     }catch(err){
         res.status(500).send({"error":err})

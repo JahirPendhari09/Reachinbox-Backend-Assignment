@@ -39,9 +39,11 @@ const main = async(details) => {
 // main(transporter,details)
 // sendMail(transporter,mailDetails)
 
+
 const sendMailResponese = async(email, content)=>{
     try {
         const interest = generateReply(content)
+        // console.log(interest,email)
         await transporter.sendMail({
             from:process.env.GMAIL_USER,
             to:email,
@@ -68,4 +70,5 @@ const sendMailResponese = async(email, content)=>{
         return `Thank you for your email. We'll get back to you.`;
     }
   }
+
 module.exports ={main,sendMailResponese}

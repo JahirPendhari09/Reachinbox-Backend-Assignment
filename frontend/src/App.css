@@ -74,6 +74,35 @@
 }
 
 
+.interest {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
+  
+}
+.form_data { 
+  width: 300px;
+  padding: 20px;
+  color: black;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+  border-radius: 20px;
+
+}
+
+.btn {
+  width: 100px;
+  padding: 5px;
+  margin-top: 10px;
+  border-radius: 5px;
+  background-color: green ;
+  color: white;
+}
 @media (min-width:1500px) {
   .home {
     width: 1000px;
