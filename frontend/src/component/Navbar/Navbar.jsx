@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css"; 
-import { useEffect } from "react";
-import axios from "axios";
 
 const Navbar = () => {
     const name = localStorage.getItem("reachinbox-auth-name");
@@ -18,7 +16,7 @@ const Navbar = () => {
         </div>
         <div className={styles.userSection}>
             { name ? <Link style={{color:"white"}}>Hello {name.slice(1,name.length-1)}!</Link>
-               : <Link to="http://localhost:8080/auth/google/">Log in</Link>
+               : <Link to="https://reachinbox-assignment.onrender.com/auth/google/">Log in</Link>
             }
             {
                 name ? <button>Logout</button> :<button>Get Started Now</button>

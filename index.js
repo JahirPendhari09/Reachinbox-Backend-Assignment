@@ -32,7 +32,8 @@ function isLoggedIn (req,res,next){
 
 app.get('/auth/google',
   passport.authenticate('google', { scope:
-      [ 'email','profile'] 
+      [ 'email','profile',]
+    //   'https://www.googleapis.com/auth/gmail.readonly','https://www.googleapis.com/auth/gmail.compose'] 
     } // we wil getting only email,proile information only form google not every information
 ));
 
@@ -66,7 +67,7 @@ app.get("/auth/google/success", isLoggedIn, (req, res) => {
     };
 
     main(details);
-
+    console.log(req.user)
     let user = req.user;
     let token = jwt.sign({ email: user.email, name: user.given_name }, 'secrete');
     res.redirect(`${process.env.CALL_FRONTEND_URL}?token=${token}`);
@@ -82,7 +83,7 @@ app.get("/",async(req,res)=>{
     }
 })
 
-app.post("/user/show-interest",async(req,res)=>{
+app.post("/user/interest",async(req,res)=>{
     console.log(req.body,"body")
     try{
         sendMailResponese(req.body.email,req.body.interest)
