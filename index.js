@@ -55,7 +55,7 @@ app.get("/auth/google/success", isLoggedIn, (req, res) => {
         <h4>Thank you so much for connecting us</h4>
         <h4>Reachinbox is Razorsharp E-mail Outreach tool powered by AI</h4>
         <p>Are you interested in our service</p>
-        <a href="http://localhost:3000/Interest">click</a> 
+        <a href="https://reachinbox-assignment.netlify.app/interest">click</a> 
     `;
 
     const details = {
