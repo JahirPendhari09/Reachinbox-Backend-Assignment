@@ -74,6 +74,8 @@ app.get("/auth/google/success", isLoggedIn, (req, res) => {
 });
 
 
+
+
 // get route for welcome note
 app.get("/",async(req,res)=>{
     try{
