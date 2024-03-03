@@ -30,6 +30,10 @@ The application is deployed on render and can be accessed [here](https://reachin
 
 ![Home Page](https://github.com/JahirPendhari09/reachinbox-Assignment/assets/128920395/43d0cc00-3eb4-4c61-b4eb-41339d86b2e3)
 
+## After Login Categories mails Based on there Context  
+
+![Categories mails](https://github.com/JahirPendhari09/reachinbox-Assignment/assets/128920395/38befc63-6f64-46b2-be4e-df69fedb9eba)
+
 ## Mail after Login Success
 
 ![Mail](https://github.com/JahirPendhari09/reachinbox-Assignment/assets/128920395/591b5d8c-984b-4b4c-8268-281070d14bfc)
