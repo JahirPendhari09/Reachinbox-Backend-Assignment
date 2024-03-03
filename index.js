@@ -11,7 +11,8 @@ const passport = require("passport")
 var session = require('express-session');
 const { main , sendMailResponese } = require("./emailSend");
 const jwt = require("jsonwebtoken")
-const cors = require('cors')
+const cors = require('cors');
+const { isLogin } = require("./Middleware/isLogin");
 
 // const { sendMails } = require("./emailSend");
 require("dotenv").config();
@@ -26,16 +27,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-function isLoggedIn (req,res,next){
-    return req.user ? next() : res.sendStatus(401)
-}
-
 app.get('/auth/google',
-  passport.authenticate('google', { scope:
-      [ 'email','profile',]
-    //   'https://www.googleapis.com/auth/gmail.readonly','https://www.googleapis.com/auth/gmail.compose'] 
-    } // we wil getting only email,proile information only form google not every information
-));
+passport.authenticate('google', 
+{ scope: 
+    ['email', 'profile',
+     'https://www.googleapis.com/auth/gmail.readonly',
+     'https://www.googleapis.com/auth/gmail.compose',
+     'https://www.googleapis.com/auth/gmail.modify'
+    ] 
+})
+);
 
 // here we are checking authenticated or not
 app.get( '/auth/google/callback',
@@ -49,13 +50,13 @@ app.get("/auth/google/failure",(req,res)=>{
     res.send("Something went wrong!")
 })
 
-app.get("/auth/google/success", isLoggedIn, (req, res) => {
+app.get("/auth/google/success", isLogin, async(req, res) => {
     
     const html = `
         <h4>Thank you so much for connecting us</h4>
         <h4>Reachinbox is Razorsharp E-mail Outreach tool powered by AI</h4>
         <p>Are you interested in our service</p>
-        <a href="https://reachinbox-assignment.netlify.app/interest">click</a> 
+        <a href="http://localhost:3000/interest">click</a> 
     `;
 
     const details = {
@@ -65,14 +66,28 @@ app.get("/auth/google/success", isLoggedIn, (req, res) => {
         text: 'Thank you so much for interest in Reachinbox',
         html: html
     };
+     // Get access token from the user's session
+     const accessToken = req.user.tokens.access_token;
+
+     // Set access token for OAuth client
+     const oauth2Client = new google.auth.OAuth2();
+     oauth2Client.setCredentials({ access_token: accessToken });
+
+     // find users emails
+     const gmail = google.gmail({ version: 'v1', auth: oauth2Client });
+
+     // Fetch the list of messages
+     const messages = await gmail.users.messages.list({ userId: 'me' });
+
+     // Fetch the content of the first message
+    getEmails(gmail,messages)
 
     main(details);
-    console.log(req.user)
+    // console.log(req.user)
     let user = req.user;
     let token = jwt.sign({ email: user.email, name: user.given_name }, 'secrete');
     res.redirect(`${process.env.CALL_FRONTEND_URL}?token=${token}`);
 });
-
 
 
 

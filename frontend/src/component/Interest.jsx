@@ -8,7 +8,7 @@ const Interest = () => {
     const email = localStorage.getItem("reachinbox-auth-email");
     
     const sendInterestToBackend = () => {
-        axios.post("https://reachinbox-assignment.onrender.com/user/interest", { email, interest })
+        axios.post("http://localhost:8080/user/interest", { email, interest })
             .then(() => {
                 alert("Thank you so much for your interest!");
                 window.location.href = "/"; 
