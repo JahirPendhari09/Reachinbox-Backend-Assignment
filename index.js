@@ -55,7 +55,7 @@ app.get("/auth/google/failure",(req,res)=>{
 app.get("/auth/google/success", isLogin, async(req, res) => {
     
     const html = `
-        <h4>Thank you so much for connecting us</h4>
+        <p>Thank you so much for connecting us</p>
         <h4>Reachinbox is Razorsharp E-mail Outreach tool powered by AI</h4>
         <p>Are you interested in our service</p>
         <a href="http://localhost:3000/interest">click</a> 
@@ -90,7 +90,6 @@ app.get("/auth/google/success", isLogin, async(req, res) => {
     let token = jwt.sign({ email: user.email, name: user.given_name }, 'secrete');
     res.redirect(`${process.env.CALL_FRONTEND_URL}?token=${token}`);
 });
-
 
 
 // get route for welcome note

@@ -48,12 +48,28 @@ const sendMailResponese = async(email, content)=>{
             from:process.env.GMAIL_USER,
             to:email,
             subject: 'Thank you so much for Connecting Us',
-            html:`<b>${interest}/b>`
+            html:`<b>${interest}</b>`
         });
         console.log("email send successfully");
     } catch(err) {
         console.log(err);
     }
+}
+
+const sendMailReplies = async(from ,to,subject, content)=>{
+  try {
+      const interest = generateReplyForEmails(content)
+      // console.log(interest,email)
+      await transporter.sendMail({
+          from:from,
+          to:to,
+          subject: `regarding ${subject} Inquiry `,
+          html:`<b>${interest}</b>`
+      });
+      console.log("email send successfully");
+  } catch(err) {
+      console.log(err);
+  }
 }
 
 
@@ -71,4 +87,20 @@ const sendMailResponese = async(email, content)=>{
     }
   }
 
-module.exports ={main,sendMailResponese}
+
+  
+  // Function to generate automated reply based on category 
+  const  generateReplyForEmails =  (category) => {
+    switch (category){
+      case 'Interested':
+        return `I'm interested for this post.i wanted to connect with you for next process . Please suggest me the time`;
+      case 'Not Interested':
+        return 'sorry not interested';
+      case 'More Information':
+        return `i want more information about the email`;
+      default:
+        return `Thank you for your email. We'll get back to you.`;
+    }
+  }
+
+module.exports ={main,sendMailResponese,sendMailReplies}

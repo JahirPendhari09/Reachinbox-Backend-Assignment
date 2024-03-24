@@ -1,16 +1,52 @@
+const {  sendMailReplies } = require("./emailSend");
+const { OpenAI } = require("openai");
 
+const apiKey = process.env.OPENAI_API_KEY;
 
-const captureEmails = async (gmail , messages, index)=>{
-    try{
+const openai = new OpenAI({ apiKey: apiKey });
+
+const promptForReadEmails = `
+You will serve as an ATS  and I will be send you gmail context. You have to assess to the read the gmail context analyse them and  understand the context and on the basis of below criteria give the response. 
+
+Filtering Criteria:  emails containing job offers or opportunities matching certain criteria:
+
+Job Titles: Full-stack web developer, software developer, software engineer.
+Location: India.
+Response Mechanism:
+If the email matches the specified criteria, the AI responds with "interested."
+If the email contains information about schools for learning or any other important message, the AI responds with "more information."
+If the email doesn't meet any of the specified criteria, the AI responds with "not interested."`;
+
+const captureEmails = async (gmail, messages, index) => {
+    try {
         const messageId = messages.data.messages[index].id;
         const messageData = await gmail.users.messages.get({ userId: 'me', id: messageId });
 
+        const headers = messageData.data.payload.headers;
+
+        // Find the 'From' header
+        const fromHeader = headers.find(header => header.name === 'From');
+
+        // Extract the sender email address from the 'From' header
+        const senderEmail = fromHeader.value;
+
+        const fromHeaderSubject = headers.find(header => header.name === 'Subject');
+
+        // Extract the sender email address from the 'From' header
+        const senderSebject = fromHeaderSubject.value;
+
         const emailSnippet = messageData.data;
 
-        // get Content of mail with the help of emailSnippet.snippet
+        // Analyse Message with the help of open Ai but right now it is not working becasue api for openai is expired 
+        // const context = await analyzeEmail(emailSnippet.snippet)
+        // console.log(context)
+
+        // get Content of mail with the help of emailSnppet.snippet/
+
         const response = checkEmailContent(emailSnippet.snippet);
         // console.log(response)
 
+        sendMailReplies('test@gmail.com',senderEmail,senderSebject,response)
         if (response === "Interested") {
             // await addLabel(gmail, messageId, "interested");
             await addLabel(gmail, messageId,"Label_5516825564213520612")
@@ -21,14 +57,14 @@ const captureEmails = async (gmail , messages, index)=>{
             // await addLabel(gmail ,messageId, "Not Interested");
             await addLabel(gmail,messageId,"Label_4133738106663783671")
         }
-    }catch(err){
+    } catch (err) {
         console.log(err)
     }
 }
 const getEmails = async (gmail, messages) => {
     try {
         // categories only first 10 mails for learning
-        for (let i=0; i<10; i++) {
+        for (let i = 0; i < 1; i++) {
             await captureEmails(gmail, messages, i);
         }
     } catch (err) {
@@ -39,9 +75,9 @@ const getEmails = async (gmail, messages) => {
 const checkEmailContent = (content) => {
     // Convert content to lowerCase
     content = content.toLowerCase();
-  
-    const interestedArr = ["developer", "software","engineer"];
-    const moreInfoArr = ["school", "course","job"];
+
+    const interestedArr = ["developer", "software", "engineer"];
+    const moreInfoArr = ["school", "course", "job"];
 
     // Check for keywords indicating interest
     if (interestedArr.some(keyword => content.includes(keyword))) {
@@ -63,9 +99,9 @@ const addLabel = async (gmail, Id, label) => {
         await gmail.users.messages.modify({
             userId: "me",
             id: Id,
-            resource:{
+            resource: {
                 addLabelIds: [label],
-                removeLabelIds: ['INBOX']  
+                removeLabelIds: ['INBOX']
             }
         });
         console.log(`Label '${label}' added to email with ID: ${Id}`);
@@ -74,4 +110,20 @@ const addLabel = async (gmail, Id, label) => {
     }
 }
 
-module.exports ={ getEmails }
+
+const analyzeEmail = async (emailContent) => {
+    try {
+        const response = await openai.chat.completions.create({
+            model: "gpt-3.5-turbo",
+            prompt: emailContent,
+            content: promptForReadEmails
+        });
+        console.log(response, "response")
+        return response.data.choices[0].text.trim();
+    } catch (error) {
+        console.error('Error analyzing email:', error);
+        throw error;
+    }
+};
+
+module.exports = { getEmails }
