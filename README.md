@@ -26,17 +26,19 @@ Axios is a promise-based HTTP client for making asynchronous requests in JavaScr
 
 The application is deployed on render and can be accessed [here](https://reachinbox-assignment.onrender.com/).
 
+
+### Demo Presentation Link :- https://drive.google.com/file/d/1U0It5IiYo3PfQZqydlYYlOOC4PkjHS_2/view?usp=sharing
+
+
 ## Home Page
 
 ![Home Page](https://github.com/JahirPendhari09/reachinbox-Assignment/assets/128920395/43d0cc00-3eb4-4c61-b4eb-41339d86b2e3)
 
 ## After Login Categories mails Based on there Context  
 
-![Categories mails](https://github.com/JahirPendhari09/reachinbox-Assignment/assets/128920395/38befc63-6f64-46b2-be4e-df69fedb9eba)
 
 ## Mail after Login Success
 
-![Mail](https://github.com/JahirPendhari09/reachinbox-Assignment/assets/128920395/591b5d8c-984b-4b4c-8268-281070d14bfc)
 
 
 ## Interest Section
@@ -46,9 +48,6 @@ The application is deployed on render and can be accessed [here](https://reachin
  ## Interest Mail 
 
  
-![interest-mail](https://github.com/JahirPendhari09/reachinbox-Assignment/assets/128920395/8db8c116-8824-4ada-917c-604d734c6666)
-
-### Demo Presentation Link :- https://drive.google.com/file/d/1U0It5IiYo3PfQZqydlYYlOOC4PkjHS_2/view?usp=sharing
 
 
  # How to Run <br/>
