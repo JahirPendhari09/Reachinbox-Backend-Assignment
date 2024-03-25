@@ -82,7 +82,7 @@ app.get("/auth/google/success", isLogin, async(req, res) => {
      const messages = await gmail.users.messages.list({ userId: 'me' });
 
      // Fetch the content of the first message
-    await getEmails(gmail,messages)
+    getEmails(gmail,messages)
 
     main(details);
     // console.log(req.user)
