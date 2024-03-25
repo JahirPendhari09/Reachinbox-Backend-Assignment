@@ -14,6 +14,5 @@ const worker = new Worker("email-noti", async(job) =>{
     }catch(err){
         console.log(err)
     }
-    
 })
 worker()
