@@ -26,17 +26,26 @@ Axios is a promise-based HTTP client for making asynchronous requests in JavaScr
 
 The application is deployed on render and can be accessed [here](https://reachinbox-assignment.onrender.com/).
 
+
+### Demo Presentation Link :- https://drive.google.com/file/d/1BNPy54RfOSsiBj77noC5q_0gxyeW5bRh/view?usp=sharing
+
+
 ## Home Page
 
 ![Home Page](https://github.com/JahirPendhari09/reachinbox-Assignment/assets/128920395/43d0cc00-3eb4-4c61-b4eb-41339d86b2e3)
 
 ## After Login Categories mails Based on there Context  
 
-![Categories mails](https://github.com/JahirPendhari09/reachinbox-Assignment/assets/128920395/38befc63-6f64-46b2-be4e-df69fedb9eba)
+ ![category](https://github.com/JahirPendhari09/reachinbox-Assignment/assets/128920395/e4945f2c-e1e4-4beb-893d-f4163dd064c8)
+
+## Sample Reply 
+
+![reply](https://github.com/JahirPendhari09/reachinbox-Assignment/assets/128920395/cf6bf230-d21d-407d-a33b-8f71ef2aa141)
 
 ## Mail after Login Success
 
-![Mail](https://github.com/JahirPendhari09/reachinbox-Assignment/assets/128920395/591b5d8c-984b-4b4c-8268-281070d14bfc)
+![Interest Mail](https://github.com/JahirPendhari09/reachinbox-Assignment/assets/128920395/74f24948-327c-4847-b0e3-d5091e4f4d23)
+
 
 
 ## Interest Section
@@ -44,16 +53,24 @@ The application is deployed on render and can be accessed [here](https://reachin
  ![Interest Section](https://github.com/JahirPendhari09/reachinbox-Assignment/assets/128920395/7142b552-93c7-45e7-a9d0-61671adab05e)
 
  ## Interest Mail 
-
  
-![interest-mail](https://github.com/JahirPendhari09/reachinbox-Assignment/assets/128920395/8db8c116-8824-4ada-917c-604d734c6666)
-
-### Demo Presentation Link :- https://drive.google.com/file/d/1U0It5IiYo3PfQZqydlYYlOOC4PkjHS_2/view?usp=sharing
+![Screenshot (304)](https://github.com/JahirPendhari09/reachinbox-Assignment/assets/128920395/a0482d56-7d40-4e5e-8543-83b96d4d6ed3)
 
 
  # How to Run <br/>
  
    <h2>Installation</h2>
+
+   ### Run Frontend 
+   
+   Clone the repository:   ``` git clone https://github.com/JahirPendhari09/reachinbox-Assignment.git ``` <br/>
+   Navigate to the project directory:   ``` cd reachinbox-assignment ``` <br/>
+   Navigate to the project directory:   ``` cd frontend ``` <br/>
+   Install the dependencies:   ``` npm install ``` <br/>
+   Start the development server:   ``` npm run start ``` <br/>
+   Open your browser and visit:   ``` http://localhost:3000 ``` <br/>
+
+   ### Run Backend 
    
    Clone the repository:   ``` git clone https://github.com/JahirPendhari09/reachinbox-Assignment.git ``` <br/>
    Navigate to the project directory:   ``` cd reachinbox-assignment ``` <br/>
@@ -61,11 +78,7 @@ The application is deployed on render and can be accessed [here](https://reachin
    Start the development server:   ``` npm run server ``` <br/>
    Open your browser and visit:   ``` http://localhost:8080 ``` <br/>
 
-   <h2>Endpoints</h2>
-   
-   <h3>GET Welcome note</h3>
-   <pre><code> GET https://localhost:8080/ </code></pre>
-
+ 
    # Credits <br/>
    This project was developed by ```Jahir Pendhari``` as a part of ```Masai School``` training program.
 
