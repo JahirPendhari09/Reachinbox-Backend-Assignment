@@ -42,7 +42,7 @@ const Home = () => {
       <p>Maximize your outreach potential with ReachInbox's unlimited email accounts, AI-</p>
       <p>driven warmups, and multi-channel capabilities. 10x your leads, meetings and deals.</p>
       {
-        !token && <Link to={token? "/": "https://reachinbox-assignment.onrender.com/auth/google/"} onClick={handleLogin}><button className='btn1'>Get Started Now ➡️</button></Link>
+        !token && <Link to={token? "/": "http://localhost:8080/auth/google/"} onClick={handleLogin}><button className='btn1'>Get Started Now ➡️</button></Link>
       }
       <div className='btns'>
         <button>❌ No Credit Card Required</button>

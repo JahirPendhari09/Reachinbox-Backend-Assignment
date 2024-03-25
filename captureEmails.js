@@ -64,7 +64,7 @@ const captureEmails = async (gmail, messages, index) => {
 const getEmails = async (gmail, messages) => {
     try {
         // categories only first 10 mails for learning
-        for (let i = 0; i < 0; i++) {
+        for (let i = 0; i < 5; i++) {
             await captureEmails(gmail, messages, i);
         }
     } catch (err) {

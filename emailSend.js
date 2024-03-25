@@ -41,7 +41,7 @@ const main = async(details) => {
 const sendMailResponese = async(email, content)=>{
     try {
         const emailContent = generateReply(content);
-        console.log("hiii")
+        // console.log("hiii")
         
         await transporter.sendMail({
             from:process.env.GMAIL_USER,
