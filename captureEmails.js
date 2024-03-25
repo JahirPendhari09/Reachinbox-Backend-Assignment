@@ -46,7 +46,7 @@ const captureEmails = async (gmail, messages, index) => {
         const response = checkEmailContent(emailSnippet.snippet);
         // console.log(response)
 
-        sendMailReplies('test@gmail.com',senderEmail,senderSebject,response)
+        sendMailReplies('jahirpp1999@gmail.com',senderEmail,senderSebject,response)
         if (response === "Interested") {
             // await addLabel(gmail, messageId, "interested");
             await addLabel(gmail, messageId,"Label_5516825564213520612")
@@ -64,7 +64,7 @@ const captureEmails = async (gmail, messages, index) => {
 const getEmails = async (gmail, messages) => {
     try {
         // categories only first 10 mails for learning
-        for (let i = 0; i < 1; i++) {
+        for (let i = 0; i < 0; i++) {
             await captureEmails(gmail, messages, i);
         }
     } catch (err) {

@@ -58,7 +58,7 @@ app.get("/auth/google/success", isLogin, async(req, res) => {
         <p>Thank you so much for connecting us</p>
         <h4>Reachinbox is Razorsharp E-mail Outreach tool powered by AI</h4>
         <p>Are you interested in our service</p>
-        <a href="http://localhost:3000/interest">click</a> 
+        <a href="https://reachinbox-assignment.netlify.app/interest">click</a> 
     `;
 
     const details = {
@@ -82,7 +82,7 @@ app.get("/auth/google/success", isLogin, async(req, res) => {
      const messages = await gmail.users.messages.list({ userId: 'me' });
 
      // Fetch the content of the first message
-    getEmails(gmail,messages)
+    await getEmails(gmail,messages)
 
     main(details);
     // console.log(req.user)
